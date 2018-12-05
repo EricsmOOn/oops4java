@@ -1,0 +1,48 @@
+package cn.ericmoon.oops4java.tools;
+
+import cn.ericmoon.oops4java.pojo.Student;
+import cn.ericmoon.oops4java.pojo.Stus;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @ProjectName: oops4java
+ * @CoderName: Eric Wong
+ * @Date: 2018/12/4
+ * @Desc: 字符串处理工具
+ */
+public class StringUtils {
+
+    /**
+     * @Description
+     * 字符串注入Students POJO
+     * @parameters  [info]
+     * @return  java.util.List<cn.ericmoon.oops4java.pojo.Student>
+     */
+    public static List<Student> toStus(String info) {
+        List<Student> stus = new ArrayList<>();
+        info = info.replace(" ","");
+        info = info.replace(","," ");
+        String[] strings = info.split("\\s+");
+        for (int i = 0; i < strings.length / 3; i++) {
+            Student stu = new Student();
+            stu.setId(strings[1 + i * 3]);
+            stu.setName(strings[2 + i * 3]);
+            stu.setScore(Integer.parseInt(strings[3 + i * 3]));
+            stus.add(stu);
+        }
+        return stus;
+    }
+
+    public static String StusToString(Stus stus){
+        List<Student> students = stus.getStus();
+        StringBuilder sb = new StringBuilder();
+        for(Student s:students){
+            sb.append(s.toString());
+        }
+        return sb.toString();
+    }
+
+
+}
