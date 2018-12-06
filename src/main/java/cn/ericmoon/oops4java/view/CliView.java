@@ -44,7 +44,7 @@ public class CliView {
                         System.out.println("输入文件名称");
                         s2 = scn.next();
                         stus = cc.readTxt(s1, s2 + ".txt", fc);
-                        System.out.println("读取 \"" + s1 + s2 + ".txt\" " + "成功!\n");
+                        System.out.println("读取 \"" + s1 + s2 + ".txt\" " + "成功!");
                         break;
 
                     case 2:
@@ -63,7 +63,7 @@ public class CliView {
                         System.out.println("输入文件名称");
                         s2 = scn.next();
                         stus = cc.readBin(s1, s2 + ".score", fc);
-                        System.out.println("读取 \"" + s1 + s2 + ".score\" " + "成功!\n");
+                        System.out.println("读取 \"" + s1 + s2 + ".score\" " + "成功!");
                         break;
 
                     case 4:
@@ -74,8 +74,8 @@ public class CliView {
                         System.out.println("输入搜索关键词");
                         s1 = scn.next();
                         List<Student> list = cc.searchStus(s1, stus);
-                        if (list == null) {
-                            System.out.println("没有这个用户!");
+                        if (list == null || list.isEmpty()) {
+                            System.out.println("没有符合条件的用户!");
                         } else {
                             for (Student student : list) {
                                 System.out.println(student.toString());
@@ -85,12 +85,14 @@ public class CliView {
 
                     case 0:
                         System.out.println("感谢您的使用!");
-                        finish = true;
-                        break;
+                        return;
 
                     default:
                         System.out.println("请输入有效的字符!");
                 }
+
+                System.out.println("输入任意值继续...");
+                scn.next();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

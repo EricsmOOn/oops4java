@@ -28,21 +28,25 @@ public class CliController {
     }
 
     public void showScore(Stus stus) {
-        System.out.println("班级名称:" + stus.getClassName());
-        System.out.println("课程名称:" + stus.getCourseName());
-        System.out.println("\n     学号    姓名,成绩");
-        System.out.println("-------------------------------------------");
-        for (Student s : stus.getStus()) {
-            System.out.print(s.toString());
+        if (stus == null) {
+            System.out.println("请先加载文件...");
+        } else {
+            System.out.println("班级名称:" + stus.getClassName());
+            System.out.println("课程名称:" + stus.getCourseName());
+            System.out.println("\n     学号    姓名,成绩");
+            System.out.println("-------------------------------------------");
+            for (Student s : stus.getStus()) {
+                System.out.print(s.toString());
+            }
+            System.out.println("-------------------------------------------");
+
+            AnalyseController ac = new AnalyseController();
+            AnalyResult result = ac.analyse(stus);
+
+            System.out.println("最高分:" + result.getMaxScore());
+            System.out.println("最低分:" + result.getMinScore());
+            System.out.println(String.format("平均分:%.2f", result.getAvaScore()));
         }
-        System.out.println("-------------------------------------------");
-
-        AnalyseController ac = new AnalyseController();
-        AnalyResult result = ac.analyse(stus);
-
-        System.out.println("最高分:" + result.getMaxScore());
-        System.out.println("最低分:" + result.getMinScore());
-        System.out.println(String.format("平均分:%.2f\n\n", result.getAvaScore()));
     }
 
     public List<Student> searchStus(String keywords, Stus stus) {

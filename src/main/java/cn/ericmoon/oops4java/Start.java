@@ -30,7 +30,7 @@ public class Start {
                 break;
 
             default:
-                System.out.println("无效的输入...");
+                System.out.println("无效的输入!请重新启动程序...");
         }
     }
 }
