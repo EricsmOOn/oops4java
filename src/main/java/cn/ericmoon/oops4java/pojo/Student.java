@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @Date: 2018/12/4
  * @Desc: 学生pojo
  */
-public class Student implements Serializable {
+public class Student implements Serializable, Comparable<Student> {
 
     private String id;//学号
     private String name;//姓名
@@ -50,5 +50,16 @@ public class Student implements Serializable {
     @Override
     public String toString() {
         return this.id+","+this.name+","+this.score+"\n";
+    }
+
+    @Override
+    public int compareTo(Student s) {
+        if (this.score < s.getScore()) return 1;
+        if (this.score > s.getScore()) return -1;
+        if (this.score == s.getScore()) {
+            if (Long.parseLong(this.id) < Long.parseLong(s.getId())) return -1;
+            else return 1;
+        }
+        return 0;
     }
 }

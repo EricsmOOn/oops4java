@@ -1,6 +1,9 @@
+import cn.ericmoon.oops4java.controllers.AnalyseController;
 import cn.ericmoon.oops4java.controllers.FileController;
+import cn.ericmoon.oops4java.controllers.SearchController;
+import cn.ericmoon.oops4java.pojo.AnalyResult;
+import cn.ericmoon.oops4java.pojo.Student;
 import cn.ericmoon.oops4java.pojo.Stus;
-import cn.ericmoon.oops4java.tools.StringUtils;
 
 import java.util.List;
 
@@ -21,7 +24,24 @@ public class Test {
 //        DataBaseUtils.insertDataToTxt(SOURCE_PRE,"199"+TXT_SUF,info.toString());
 
         FileController fc = new FileController();
-        Stus stus = fc.getFromTxt(SOURCE_PRE, "1" + TXT_SUF);
-        String s = StringUtils.StusToString(stus);
+        Stus stus = fc.getFromTxt(SOURCE_PRE, "2017网工二班-Java" + TXT_SUF);
+//        String s = StringUtils.StusToString(stus);
+//        System.out.println(stus.getClassName()+":::"+stus.getCourseName());
+
+//        AnalyseController ac = new AnalyseController();
+//        Stus sortStus = ac.sortStus(stus);
+//        System.out.println(sortStus.getStus().toString());
+//        System.out.println(stus.getStus().toString());
+
+        AnalyseController ac = new AnalyseController();
+        AnalyResult ar = ac.analyse(stus);
+        System.out.println(ar);
+
+        SearchController sc = new SearchController();
+        List<Student> list = sc.search("一", stus);
+        for (Student s : list) {
+            System.out.println(s.toString());
+        }
+
     }
 }

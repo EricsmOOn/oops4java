@@ -13,14 +13,18 @@ public class Stus {
     private List<Student> stus;
     private String path;
     private int num;
+    private String className;
+    private String courseName;
 
     public Stus() {
     }
 
-    public Stus(List<Student> stus, String path) {
+    public Stus(List<Student> stus, String path, String className, String courseName) {
         this.stus = stus;
         this.path = path;
         this.num = stus.size();
+        this.className = className;
+        this.courseName = courseName;
     }
 
     public List<Student> getStus() {
@@ -42,4 +46,22 @@ public class Stus {
     public int getNum() {
         return num;
     }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+
 }

@@ -4,7 +4,9 @@ import cn.ericmoon.oops4java.pojo.Student;
 import cn.ericmoon.oops4java.pojo.Stus;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ProjectName: oops4java
@@ -35,6 +37,11 @@ public class StringUtils {
         return stus;
     }
 
+    /**
+     * @return java.lang.String
+     * @Description POJO 返回字符串
+     * @parameters [stus]
+     */
     public static String StusToString(Stus stus){
         List<Student> students = stus.getStus();
         StringBuilder sb = new StringBuilder();
@@ -44,5 +51,19 @@ public class StringUtils {
         return sb.toString();
     }
 
+    /**
+     * @Description
+     * 解析文件名
+     * @parameters [fullName]
+     * @return java.util.Map<java.lang.String , java.lang.String>
+     */
+    public static Map<String, String> getNameInfo(String fullName) {
+        fullName = fullName.replace("-", ".");
+        String[] strings = fullName.split("\\.");
+        Map map = new HashMap();
+        map.put("className", strings[0]);
+        map.put("courseName", strings[1]);
+        return map;
+    }
 
 }

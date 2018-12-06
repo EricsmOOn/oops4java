@@ -6,6 +6,7 @@ import cn.ericmoon.oops4java.tools.DataBaseUtils;
 import cn.ericmoon.oops4java.tools.StringUtils;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ProjectName: oops4java
@@ -20,10 +21,11 @@ public class FileController {
      * @parameters  [path, fullName]
      * @return  cn.ericmoon.oops4java.pojo.Stus
      */
-    public Stus getFromTxt(String path,String fullName){
+    public Stus getFromTxt(String path, String fullName) throws Exception {
         StringBuilder txt = DataBaseUtils.getDataFromTxt(path, fullName);
         List<Student> stus = StringUtils.toStus(txt.toString());
-        return new Stus(stus,path+fullName);
+        Map<String, String> nameInfo = StringUtils.getNameInfo(fullName);
+        return new Stus(stus, path + fullName, nameInfo.get("className"), nameInfo.get("courseName"));
     }
 
     /**
@@ -45,7 +47,8 @@ public class FileController {
      */
     public Stus getFromScore(String path,String fullName) throws Exception {
         List<Student> stus = DataBaseUtils.loadStus(path, fullName);
-        return new Stus(stus,path+fullName);
+        Map<String, String> nameInfo = StringUtils.getNameInfo(fullName);
+        return new Stus(stus, path + fullName, nameInfo.get("className"), nameInfo.get("courseName"));
     }
 
     /**
