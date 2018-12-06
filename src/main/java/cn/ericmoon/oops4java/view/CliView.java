@@ -16,8 +16,7 @@ import java.util.Scanner;
  */
 public class CliView {
 
-    public static void main(String[] strs) {
-        Scanner scn = new Scanner(System.in);
+    public void CliStart(Scanner scn) {
         boolean finish = false;
         Stus stus = null;
         String s1 = "";
@@ -87,6 +86,7 @@ public class CliView {
                     case 0:
                         System.out.println("感谢您的使用!");
                         finish = true;
+                        break;
 
                     default:
                         System.out.println("请输入有效的字符!");
@@ -96,6 +96,4 @@ public class CliView {
             System.out.println(e.getMessage());
         }
     }
-
-
 }
