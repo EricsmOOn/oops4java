@@ -1,5 +1,7 @@
 package cn.ericmoon.oops4java.pojo;
 
+import java.util.List;
+
 /**
  * @ProjectName: oops4java
  * @CoderName: Eric Wong
@@ -12,6 +14,8 @@ public class AnalyResult {
     private double maxScore;
     private double minScore;
     private double avaScore;
+    private List<Integer> l;
+    private List<Double> lb;
 
     public Stus getAnalyStus() {
         return AnalyStus;
@@ -45,13 +49,31 @@ public class AnalyResult {
         this.avaScore = avaScore;
     }
 
+    public List<Integer> getL() {
+        return l;
+    }
+
+    public void setL(List<Integer> l) {
+        this.l = l;
+    }
+
+    public List<Double> getLb() {
+        return lb;
+    }
+
+    public void setLb(List<Double> lb) {
+        this.lb = lb;
+    }
+
     @Override
     public String toString() {
         return "AnalyResult{" +
-                "AnalyStus=" + AnalyStus.getStus().toString() +
+                "AnalyStus=" + AnalyStus +
                 ", maxScore=" + maxScore +
                 ", minScore=" + minScore +
                 ", avaScore=" + avaScore +
+                ", l=" + l +
+                ", lb=" + lb +
                 '}';
     }
 }

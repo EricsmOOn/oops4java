@@ -1,5 +1,6 @@
 package cn.ericmoon.oops4java.pojo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +18,15 @@ public class Stus {
     private String courseName;
 
     public Stus() {
+        List<Student> list = new ArrayList<>();
+        list.add(new Student());
+        this.stus = list;
+        this.path = "";
+        this.num = stus.size();
+        this.className = "";
+        this.courseName = "";
     }
+
 
     public Stus(List<Student> stus, String path, String className, String courseName) {
         this.stus = stus;

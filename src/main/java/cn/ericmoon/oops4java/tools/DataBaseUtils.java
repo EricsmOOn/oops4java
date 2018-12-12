@@ -18,14 +18,14 @@ public class DataBaseUtils {
      * @Description 读取文件到StringBuilder
      * @parameters [name]
      */
-    public static StringBuilder getDataFromTxt(String path,String fullName) throws Exception {
-        if(!new File(path+fullName).exists()){
-            throw new Exception("不存在"+path+fullName+"此文件");
+    public static StringBuilder getDataFromTxt(String path) throws Exception {
+        if (!new File(path).exists()) {
+            throw new Exception("不存在" + path + "此文件");
         }
         StringBuilder sb = new StringBuilder();
         String s;
         try {
-            BufferedReader br = new BufferedReader(new FileReader(path+fullName));
+            BufferedReader br = new BufferedReader(new FileReader(path));
             while ((s = br.readLine()) != null) {
                 //System.lineSeparator() --> 获取系统的回车符
                 sb.append(System.lineSeparator()).append(s);
@@ -42,8 +42,8 @@ public class DataBaseUtils {
      * @Description 储存文件从String
      * @parameters [name]
      */
-    public static void insertDataToTxt(String path,String fullName,String info) {
-        File file = new File(path+fullName);
+    public static void insertDataToTxt(String path, String info) {
+        File file = new File(path);
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(file));
             bw.write(info);
@@ -60,8 +60,8 @@ public class DataBaseUtils {
      * @parameters  [name, obj, oos]
      * @return  void
      */
-    private static void saveObjs(String path,String fullName, List<? extends Object> list) throws Exception {
-        File file = new File(path+fullName);
+    private static void saveObjs(String path, List<? extends Object> list) throws Exception {
+        File file = new File(path);
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
         oos.writeObject(list);
         oos.flush();
@@ -74,8 +74,8 @@ public class DataBaseUtils {
      * @parameters  [name, obj, oos]
      * @return  void
      */
-    public static void saveStus(String path,String fullName, List<Student> list) throws Exception {
-        saveObjs(path,fullName,list);
+    public static void saveStus(String path, List<Student> list) throws Exception {
+        saveObjs(path, list);
     }
 
 
@@ -85,10 +85,10 @@ public class DataBaseUtils {
      * @parameters  [name]
      * @return  void
      */
-    private static List loadObjs(String path,String fullName) throws Exception {
-        File file = new File(path+fullName);
+    private static List loadObjs(String path) throws Exception {
+        File file = new File(path);
         if(!file.exists()){
-            throw new Exception("不存在"+path+fullName+"此文件");
+            throw new Exception("不存在" + path + "此文件");
         }
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
         List<Object> list = (List<Object>)ois.readObject();
@@ -102,7 +102,7 @@ public class DataBaseUtils {
      * @parameters  [name]
      * @return  void
      */
-    public static List<Student> loadStus(String path,String fullName) throws Exception {
-        return (List<Student>) loadObjs(path,fullName);
+    public static List<Student> loadStus(String path) throws Exception {
+        return (List<Student>) loadObjs(path);
     }
 }

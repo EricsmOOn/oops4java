@@ -3,7 +3,7 @@ package cn.ericmoon.oops4java.view;
 import cn.ericmoon.oops4java.controllers.CliController;
 import cn.ericmoon.oops4java.controllers.FileController;
 import cn.ericmoon.oops4java.pojo.Student;
-import cn.ericmoon.oops4java.pojo.Stus;
+import cn.ericmoon.oops4java.view.gui.source.GuiSource;
 
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +18,6 @@ public class CliView {
 
     public void CliStart(Scanner scn) {
         boolean finish = false;
-        Stus stus = null;
         String s1 = "";
         String s2 = "";
         CliController cc = new CliController();
@@ -41,39 +40,39 @@ public class CliView {
                     case 1:
                         System.out.println("输入文件路径");
                         s1 = scn.next();
-                        System.out.println("输入文件名称");
+                        System.out.println("输入文件名称(不包括后缀名)");
                         s2 = scn.next();
-                        stus = cc.readTxt(s1, s2 + ".txt", fc);
+                        GuiSource.setStus(cc.readTxt(s1 + s2 + ".txt", fc));
                         System.out.println("读取 \"" + s1 + s2 + ".txt\" " + "成功!");
                         break;
 
                     case 2:
                         System.out.println("输入文件路径");
                         s1 = scn.next();
-                        System.out.println("输入文件名称");
+                        System.out.println("输入文件名称(不包括后缀名)");
                         s2 = scn.next();
-                        if (stus == null) throw new Exception("请先读取对象!");
-                        String s = cc.saveToBin(s1, s2 + ".score", stus, fc);
+                        if (GuiSource.getStus() == null) throw new Exception("请先读取对象!");
+                        String s = cc.saveToBin(s1 + s2 + ".score", GuiSource.getStus(), fc);
                         System.out.println("文件已存入 --> " + s);
                         break;
 
                     case 3:
                         System.out.println("输入文件路径");
                         s1 = scn.next();
-                        System.out.println("输入文件名称");
+                        System.out.println("输入文件名称(不包括后缀名)");
                         s2 = scn.next();
-                        stus = cc.readBin(s1, s2 + ".score", fc);
+                        GuiSource.setStus(cc.readBin(s1 + s2 + ".score", fc));
                         System.out.println("读取 \"" + s1 + s2 + ".score\" " + "成功!");
                         break;
 
                     case 4:
-                        cc.showScore(stus);
+                        cc.showScore(GuiSource.getStus());
                         break;
 
                     case 5:
                         System.out.println("输入搜索关键词");
                         s1 = scn.next();
-                        List<Student> list = cc.searchStus(s1, stus);
+                        List<Student> list = cc.searchStus(s1, GuiSource.getStus());
                         if (list == null || list.isEmpty()) {
                             System.out.println("没有符合条件的用户!");
                         } else {

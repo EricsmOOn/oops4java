@@ -24,7 +24,7 @@ public class Test {
 //        DataBaseUtils.insertDataToTxt(SOURCE_PRE,"199"+TXT_SUF,info.toString());
 
         FileController fc = new FileController();
-        Stus stus = fc.getFromTxt(SOURCE_PRE, "2017网工二班-Java" + TXT_SUF);
+        Stus stus = fc.getFromTxt("/Users/ericwong/IdeaProjects/oops4java/src/main/resources/2017网工二班-Java" + TXT_SUF);
 //        String s = StringUtils.StusToString(stus);
 //        System.out.println(stus.getClassName()+":::"+stus.getCourseName());
 

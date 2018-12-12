@@ -21,11 +21,11 @@ public class FileController {
      * @parameters  [path, fullName]
      * @return  cn.ericmoon.oops4java.pojo.Stus
      */
-    public Stus getFromTxt(String path, String fullName) throws Exception {
-        StringBuilder txt = DataBaseUtils.getDataFromTxt(path, fullName);
+    public Stus getFromTxt(String path) throws Exception {
+        StringBuilder txt = DataBaseUtils.getDataFromTxt(path);
         List<Student> stus = StringUtils.toStus(txt.toString());
-        Map<String, String> nameInfo = StringUtils.getNameInfo(fullName);
-        return new Stus(stus, path + fullName, nameInfo.get("className"), nameInfo.get("courseName"));
+        Map<String, String> nameInfo = StringUtils.getNameInfo(path);
+        return new Stus(stus, path, nameInfo.get("className"), nameInfo.get("courseName"));
     }
 
     /**
@@ -34,9 +34,9 @@ public class FileController {
      * @parameters  [path, fullName, stus]
      * @return  void
      */
-    public void saveToTxt(String path,String fullName,Stus stus){
+    public void saveToTxt(String path, Stus stus) {
         String info = StringUtils.StusToString(stus);
-        DataBaseUtils.insertDataToTxt(path,fullName,info);
+        DataBaseUtils.insertDataToTxt(path, info);
     }
 
     /**
@@ -45,10 +45,10 @@ public class FileController {
      * @parameters  [path, fullName]
      * @return  cn.ericmoon.oops4java.pojo.Stus
      */
-    public Stus getFromScore(String path,String fullName) throws Exception {
-        List<Student> stus = DataBaseUtils.loadStus(path, fullName);
-        Map<String, String> nameInfo = StringUtils.getNameInfo(fullName);
-        return new Stus(stus, path + fullName, nameInfo.get("className"), nameInfo.get("courseName"));
+    public Stus getFromScore(String path) throws Exception {
+        List<Student> stus = DataBaseUtils.loadStus(path);
+        Map<String, String> nameInfo = StringUtils.getNameInfo(path);
+        return new Stus(stus, path, nameInfo.get("className"), nameInfo.get("courseName"));
     }
 
     /**
@@ -57,8 +57,8 @@ public class FileController {
      * @parameters  [path, fullName, stus]
      * @return  void
      */
-    public void saveToScore(String path,String fullName,Stus stus) throws Exception {
-        DataBaseUtils.saveStus(path,fullName,stus.getStus());
+    public void saveToScore(String path, Stus stus) throws Exception {
+        DataBaseUtils.saveStus(path, stus.getStus());
     }
 
 

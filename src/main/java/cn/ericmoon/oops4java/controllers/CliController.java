@@ -14,17 +14,17 @@ import java.util.List;
  */
 public class CliController {
 
-    public Stus readTxt(String path, String fullName, FileController fc) throws Exception {
-        return fc.getFromTxt(path, fullName);
+    public Stus readTxt(String path, FileController fc) throws Exception {
+        return fc.getFromTxt(path);
     }
 
-    public String saveToBin(String path, String fullName, Stus stus, FileController fc) throws Exception {
-        fc.saveToScore(path, fullName, stus);
-        return path + fullName;
+    public String saveToBin(String path, Stus stus, FileController fc) throws Exception {
+        fc.saveToScore(path, stus);
+        return path;
     }
 
-    public Stus readBin(String path, String fullName, FileController fc) throws Exception {
-        return fc.getFromScore(path, fullName);
+    public Stus readBin(String path, FileController fc) throws Exception {
+        return fc.getFromScore(path);
     }
 
     public void showScore(Stus stus) {

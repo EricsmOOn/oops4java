@@ -58,6 +58,7 @@ public class StringUtils {
      * @return java.util.Map<java.lang.String , java.lang.String>
      */
     public static Map<String, String> getNameInfo(String fullName) {
+        fullName = fullName.substring(fullName.lastIndexOf("/") + 1);
         fullName = fullName.replace("-", ".");
         String[] strings = fullName.split("\\.");
         Map map = new HashMap();

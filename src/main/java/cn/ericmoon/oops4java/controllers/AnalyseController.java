@@ -4,6 +4,7 @@ import cn.ericmoon.oops4java.pojo.AnalyResult;
 import cn.ericmoon.oops4java.pojo.Student;
 import cn.ericmoon.oops4java.pojo.Stus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,17 +21,62 @@ public class AnalyseController {
      * @parameters [stus]
      */
     public AnalyResult analyse(Stus stus) {
+        List<Integer> l = new ArrayList<>();
+        List<Double> lb = new ArrayList<>();
+
+        int l0 = 0, l1 = 0, l2 = 0, l3 = 0, l4 = 0;
+
         List<Student> list = sortByScore(stus);
         stus.setStus(list);
         AnalyResult ar = new AnalyResult();
         ar.setAnalyStus(stus);
+
+        if (list.isEmpty()) {
+            ar.setMaxScore(0);
+            ar.setMinScore(0);
+
+            l.add(0, l0);
+            lb.add(0, 0.0);
+            l.add(1, l1);
+            lb.add(1, 0.0);
+            l.add(2, l2);
+            lb.add(2, 0.0);
+            l.add(3, l3);
+            lb.add(3, 0.0);
+            l.add(4, l4);
+            lb.add(4, 0.0);
+            ar.setAvaScore(0);
+            ar.setL(l);
+            ar.setLb(lb);
+
+            return ar;
+        }
         ar.setMaxScore(list.get(0).getScore());
         ar.setMinScore(list.get(list.size() - 1).getScore());
         double sum = 0;
         for (Student s : list) {
+
+            if (s.getScore() >= 90 && s.getScore() <= 100) l0++;
+            if (s.getScore() >= 80 && s.getScore() < 90) l1++;
+            if (s.getScore() >= 70 && s.getScore() < 80) l2++;
+            if (s.getScore() >= 60 && s.getScore() < 70) l3++;
+            if (s.getScore() >= 0 && s.getScore() < 60) l4++;
+
             sum += s.getScore();
         }
+        l.add(0, l0);
+        lb.add(0, (double) l0 / list.size());
+        l.add(1, l1);
+        lb.add(1, (double) l1 / list.size());
+        l.add(2, l2);
+        lb.add(2, (double) l2 / list.size());
+        l.add(3, l3);
+        lb.add(3, (double) l3 / list.size());
+        l.add(4, l4);
+        lb.add(4, (double) l4 / list.size());
         ar.setAvaScore(sum / list.size());
+        ar.setL(l);
+        ar.setLb(lb);
         return ar;
     }
 
@@ -39,9 +85,9 @@ public class AnalyseController {
      * @Description 根据学号排序
      * @parameters [stus]
      */
-    public List<Student> sortByName(Stus stus) {
+    public List<Student> sortById(Stus stus) {
         List<Student> list = stus.getStus();
-        list.sort((o1, o2) -> (int) (Double.parseDouble(o1.getId()) - Double.parseDouble(o2.getId()) + 1));
+        list.sort((o1, o2) -> (int) (Double.parseDouble(o1.getId()) - Double.parseDouble(o2.getId())));
         return list;
     }
 
