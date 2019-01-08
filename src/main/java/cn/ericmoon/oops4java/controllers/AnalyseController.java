@@ -60,20 +60,20 @@ public class AnalyseController {
             if (s.getScore() >= 80 && s.getScore() < 90) l1++;
             if (s.getScore() >= 70 && s.getScore() < 80) l2++;
             if (s.getScore() >= 60 && s.getScore() < 70) l3++;
-            if (s.getScore() >= 0 && s.getScore() < 60) l4++;
+            if (s.getScore() > 0 && s.getScore() < 60) l4++;
 
             sum += s.getScore();
         }
         l.add(0, l0);
-        lb.add(0, (double) l0 / list.size());
+        lb.add(0, 100 * (double) l0 / list.size());
         l.add(1, l1);
-        lb.add(1, (double) l1 / list.size());
+        lb.add(1, 100 * (double) l1 / list.size());
         l.add(2, l2);
-        lb.add(2, (double) l2 / list.size());
+        lb.add(2, 100 * (double) l2 / list.size());
         l.add(3, l3);
-        lb.add(3, (double) l3 / list.size());
+        lb.add(3, 100 * (double) l3 / list.size());
         l.add(4, l4);
-        lb.add(4, (double) l4 / list.size());
+        lb.add(4, 100 * (double) l4 / list.size());
         ar.setAvaScore(sum / list.size());
         ar.setL(l);
         ar.setLb(lb);

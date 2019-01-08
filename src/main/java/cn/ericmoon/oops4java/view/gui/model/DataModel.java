@@ -16,7 +16,8 @@ public class DataModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return GuiSource.getStus().getStus().size();
+        int size = GuiSource.getStus().getStus().size();
+        return size;
     }
 
     @Override

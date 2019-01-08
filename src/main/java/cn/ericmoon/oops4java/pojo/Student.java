@@ -16,8 +16,8 @@ public class Student implements Serializable {
 
     public Student() {
         this.id = "";
-        this.name = "";
-        this.score = -1;
+        this.name = "Empty Student!";
+        this.score = 0;
     }
 
     public Student(String id, String name, int score) {
